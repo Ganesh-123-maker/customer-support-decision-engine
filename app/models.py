@@ -5,7 +5,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class IssueType(str, Enum):
@@ -79,6 +79,13 @@ class TicketInput(BaseModel):
     product_type: Optional[str] = Field(None, description="Product type: food, non_food, mixed, unknown")
     opened_status: Optional[str] = Field(None, description="Opened status: opened, unopened, unknown")
     order_status: Optional[str] = Field(None, description="Order status: pending, dispatched, delivered, unknown")
+
+    @field_validator("message")
+    @classmethod
+    def message_must_not_be_blank(cls, v: str) -> str:
+        if not v.strip():
+            raise ValueError("Message cannot be empty or whitespace only")
+        return v
 
 
 class DecisionResponse(BaseModel):

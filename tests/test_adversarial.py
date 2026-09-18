@@ -261,3 +261,9 @@ class TestInputValidationRejections:
             headers={"Content-Type": "application/json"},
         )
         assert res.status_code == 422
+
+    def test_whitespace_only_message(self):
+        res = client.post("/decide", json={"message": "   \t\n  "})
+        assert res.status_code == 422
+        body = res.json()
+        assert "error" in body
