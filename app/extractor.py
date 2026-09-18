@@ -28,7 +28,7 @@ _DAMAGE_KEYWORDS = [
 ]
 
 _DEFECT_KEYWORDS = [
-    "defective", "defect", "malfunction", "not working", "doesn't work",
+    "defective", "defect", "malfunction", "not working", "doesn't work", "does not work",
     "won't turn on", "stops working", "stopped working", "faulty", "fault",
     "doesn't function", "does not function", "not functioning", "stopped functioning",
     "dead on arrival", "doa", "won't start", "does not turn on", "doesn't turn on",
@@ -42,7 +42,7 @@ _WRONG_ITEM_KEYWORDS = [
     "not what i ordered", "not what I ordered", "ordered .+ but received",
     "ordered .+ but got", "ordered .+ received", "different from what i ordered",
     "different from what I ordered", "different flavour", "different flavor",
-    "different item", "sent me the wrong", "received the wrong",
+    "different item", "sent me the wrong", "received the wrong", "instead of",
 ]
 
 _RETURN_KEYWORDS = [

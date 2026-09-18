@@ -148,8 +148,10 @@ curl -X POST http://localhost:8000/decide \
 pytest tests/ -v
 ```
 
-The test suite contains **406 automated tests**:
+The test suite contains **441 automated tests**:
 - **Sample test cases (`test_sample_cases.py`)**: All cases (`S01`–`S05`) from `sample_test_cases.json`.
+- **Hidden evaluation simulation (`test_hidden_eval_simulation.py`)**: Realistic unseen products, prices, dates, wording, and fuzzing across all policies.
+- **Regression test suite (`test_regressions.py`)**: Explicit regression verification for all bugs and edge-case phrasing.
 - **Policy test matrix (`test_policy_matrix.py`)**: Systematic matrix of eligible, ineligible, boundary, missing-info, contradictory, and NLP cases across all 6 policies.
 - **Exhaustive boundary tests (`test_boundaries_exhaustive.py`)**: Threshold - 1, threshold, and threshold + 1 for every numerical rule.
 - **Adversarial & robustness tests (`test_adversarial.py`)**: Contradictory claims, missing facts, extreme numbers, currency variations (`₹`, `Rs`, `INR`, `rupees`), and validation errors.
@@ -181,21 +183,23 @@ Per `DATA_NOTES.md`, `tickets.csv` is **not** used for decision-making. The engi
 Intern_Project/
 ├── app/
 │   ├── __init__.py
-│   ├── main.py                       # FastAPI application, /decide and /decision endpoints
-│   ├── models.py                     # Pydantic schemas, enums, data models
-│   ├── extractor.py                  # Deterministic fact extraction & precedence
-│   └── policy_engine.py              # Deterministic policy evaluation functions
+│   ├── main.py                         # FastAPI application, /decide and /decision endpoints
+│   ├── models.py                       # Pydantic schemas, enums, data models
+│   ├── extractor.py                    # Deterministic fact extraction & precedence
+│   └── policy_engine.py                # Deterministic policy evaluation functions
 ├── tests/
 │   ├── __init__.py
-│   ├── test_sample_cases.py          # Supplied sample test cases (S01-S05)
-│   ├── test_policy_matrix.py         # Complete policy test matrix
-│   ├── test_boundaries_exhaustive.py # Exhaustive boundary testing (threshold ± 1)
-│   ├── test_adversarial.py           # Contradictory inputs, missing info, edge cases
-│   ├── test_api_live.py              # Live endpoint verification & determinism
-│   ├── test_policies.py              # Comprehensive policy branch tests
-│   ├── test_extractor.py             # Fact extractor unit tests
-│   └── test_historical_tickets.py    # 100% regression validation on tickets.csv
-├── candidate_pack/                   # Assignment files (knowledge base, data)
+│   ├── test_sample_cases.py            # Supplied sample test cases (S01-S05)
+│   ├── test_hidden_eval_simulation.py  # Hidden evaluator test simulation
+│   ├── test_regressions.py             # Bug & edge-case regression suite
+│   ├── test_policy_matrix.py           # Complete policy test matrix
+│   ├── test_boundaries_exhaustive.py   # Exhaustive boundary testing (threshold ± 1)
+│   ├── test_adversarial.py             # Contradictory inputs, missing info, edge cases
+│   ├── test_api_live.py                # Live endpoint verification & determinism
+│   ├── test_policies.py                # Comprehensive policy branch tests
+│   ├── test_extractor.py               # Fact extractor unit tests
+│   └── test_historical_tickets.py      # 100% regression validation on tickets.csv
+├── candidate_pack/                     # Assignment files (knowledge base, data)
 ├── requirements.txt
 ├── .gitignore
 └── README.md
